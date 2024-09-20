@@ -1,0 +1,61 @@
+﻿using UnityEngine;
+
+namespace Assets.Scripts.FlappyTerminator
+{
+    public class Game : MonoBehaviour
+    {
+        [SerializeField] Plane _plane;
+        [SerializeField] private StartScreen _startScreen;
+        [SerializeField] private EndGameScreen _endGameScreen;
+        [SerializeField] private EnemySpawner _enemySpawner;
+        [SerializeField] private BulletSpawner _bulletSpawner;
+        [SerializeField] private BulletSpawner _playerBulletSpawner;
+
+        private void OnEnable()
+        {
+            _startScreen.PlayButtonClicked += OnplayButtonClick;
+            _endGameScreen.RestartButtonClicked += OnRestartButtonClick;
+            _plane.GameOver += OnGameOver;
+        }
+
+        private void OnDisable()
+        {
+            _startScreen.PlayButtonClicked -= OnplayButtonClick;
+            _endGameScreen.RestartButtonClicked -= OnRestartButtonClick;
+            _plane.GameOver -= OnGameOver;
+        }
+
+        private void Start()
+        {
+            Time.timeScale = 0;
+            _startScreen.Open();
+        }
+
+        private void OnGameOver()
+        {
+            Time.timeScale = 0;
+            _endGameScreen.Open();
+        }
+
+        private void OnplayButtonClick()
+        {
+            _startScreen.Close();
+            StartGame();
+        }
+
+        private void OnRestartButtonClick()
+        {
+            _endGameScreen.Close();
+            StartGame();
+        }
+
+        private void StartGame()
+        {
+            Time.timeScale = 1;
+            _plane.Reset();
+            _enemySpawner.Reset();
+            _bulletSpawner.Reset();
+            _playerBulletSpawner.Reset();
+        }
+    }
+}

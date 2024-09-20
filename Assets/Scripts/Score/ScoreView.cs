@@ -24,6 +24,6 @@ public class ScoreView : MonoBehaviour
 
     private void OnScoreChanged(int count)
     {
-        _scoreText.text = count.ToString();
+        _scoreText.text = ("Score: " + count.ToString());
     }
 }
