@@ -5,11 +5,10 @@ namespace Assets.Scripts.FlappyTerminator
 {
     public class PlaneShooter : MonoBehaviour
     {
-        [SerializeField] BulletSpawner _bulletSpawner;
-        [SerializeField] Transform _bulletSpawnPoint;
+        [SerializeField] private BulletSpawner _bulletSpawner;
+        [SerializeField] private Transform _bulletSpawnPoint;
         [SerializeField] private float _shootDelay = 1;
         private float _delayLeft = 0;
-        private float _xOffset = 2f;
         private bool _isRightDirection = true;
 
         public void TryShoot(float shooterSpeed)

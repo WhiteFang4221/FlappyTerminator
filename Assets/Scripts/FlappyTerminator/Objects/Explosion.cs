@@ -34,7 +34,6 @@ namespace Assets.Scripts.FlappyTerminator
                 yield return null;
             }
 
-            Debug.Log("Animation complete. Deactivating object.");
             gameObject.SetActive(false);
         }
     }

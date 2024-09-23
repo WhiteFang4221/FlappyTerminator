@@ -7,15 +7,9 @@ public class ScoreCounter : MonoBehaviour
 
     public event Action<int> Changed;
 
-    private void OnEnable()
-    {
-        Debug.Log(gameObject.GetHashCode());
-    }
-
     public void Add()
     {
         _score++;
-        Debug.Log(gameObject.GetHashCode());
         Changed?.Invoke(_score);
     }
 

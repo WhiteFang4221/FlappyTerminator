@@ -11,15 +11,15 @@ namespace FlappyBird
 
         private void OnEnable()
         {
-            _startScreen.PlayButtonClicked += OnplayButtonClick;
-            _endGameScreen.RestartButtonClicked += OnRestartButtonClick;
+            _startScreen.ButtonClicked += OnplayButtonClick;
+            _endGameScreen.ButtonClicked += OnRestartButtonClick;
             _bird.GameOver += OnGameOver;
         }
 
         private void OnDisable()
         {
-            _startScreen.PlayButtonClicked -= OnplayButtonClick;
-            _endGameScreen.RestartButtonClicked -= OnRestartButtonClick;
+            _startScreen.ButtonClicked -= OnplayButtonClick;
+            _endGameScreen.ButtonClicked -= OnRestartButtonClick;
             _bird.GameOver -= OnGameOver;
         }
 

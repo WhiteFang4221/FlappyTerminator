@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public abstract class Window : MonoBehaviour
 {
     [SerializeField] private Button _actionButton;
+    public event Action ButtonClicked;
 
     private void OnEnable()
     {
@@ -25,5 +27,8 @@ public abstract class Window : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    protected abstract void OnButtonClick();
+    private void OnButtonClick()
+    {
+        ButtonClicked?.Invoke();
+    }
 }

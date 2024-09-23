@@ -40,7 +40,7 @@ namespace FlappyBird
         {
             float spawnPositionY = Random.Range(_upperBound, _lowerBound);
             Vector3 spawnpoint = new Vector3(transform.position.x, spawnPositionY, transform.position.z);
-            var pipe = _pool.Get(spawnpoint);
+            _pool.Get(spawnpoint);
         }
     }
 }

@@ -9,7 +9,6 @@ namespace Assets.Scripts.FlappyTerminator
         [SerializeField] private float _speed;
         private Rigidbody2D _rigidbody;
         private Vector2 _direction;
-        private Coroutine _bulletCoroutine;
 
         private void Awake()
         {
@@ -23,20 +22,7 @@ namespace Assets.Scripts.FlappyTerminator
 
         public void StartBulletCoroutine(Quaternion rotation,bool isRight, float ShooterSpeed)
         {
-            if (_bulletCoroutine != null)
-            {
-                _bulletCoroutine = null;
-            }
-
-            _bulletCoroutine = StartCoroutine(BulletCoroutine(rotation, isRight, ShooterSpeed));
-        }
-
-        public void StopBulletCoroutine()
-        {
-            if (_bulletCoroutine != null)
-            {
-                StopCoroutine(_bulletCoroutine);
-            }
+            StartCoroutine(BulletCoroutine(rotation, isRight, ShooterSpeed));
         }
 
         private IEnumerator BulletCoroutine(Quaternion rotation, bool isRightDirection, float shooterSpeed)

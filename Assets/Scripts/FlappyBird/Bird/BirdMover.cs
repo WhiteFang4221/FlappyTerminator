@@ -19,10 +19,6 @@ namespace FlappyBird
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-        }
-
-        private void Start()
-        {
             _startPosition = transform.position;
             _maxRotation = Quaternion.Euler(0, 0, _maxRotationZ);
             _minRotation = Quaternion.Euler(0, 0, _minRotationZ);
@@ -41,7 +37,6 @@ namespace FlappyBird
                 transform.rotation = Quaternion.Lerp(transform.rotation, _minRotation, _rotationSpeed * Time.deltaTime);
             }
         }
-
 
         public void Reset()
         {

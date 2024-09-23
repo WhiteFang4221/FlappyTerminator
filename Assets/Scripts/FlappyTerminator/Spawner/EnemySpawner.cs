@@ -10,13 +10,7 @@ namespace Assets.Scripts.FlappyTerminator
         [SerializeField] private float _lowerBound;
         [SerializeField] private float _upperBound;
         
-        private Pool<Enemy> _pool;
         private WaitForSeconds _delay = new WaitForSeconds(1.5f);
-
-        private void Awake()
-        {
-            _pool = GetComponent<Pool<Enemy>>();
-        }
 
         private void Start()
         {

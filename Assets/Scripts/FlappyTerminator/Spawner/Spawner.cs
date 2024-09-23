@@ -11,12 +11,11 @@ namespace Assets.Scripts.FlappyTerminator
             _pool.Reset();
         }
 
-        public virtual T GetObject(Vector3 vector)
+        public T GetObject(Vector3 vector)
         {
             T createdObject = _pool.Get(vector);
             createdObject.Disabled += DestroyObject;
             return createdObject;
-
         }
 
         protected virtual void DestroyObject(T spawnableObject)

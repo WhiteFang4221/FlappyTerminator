@@ -16,8 +16,6 @@ namespace Assets.Scripts.FlappyTerminator
         private Rigidbody2D _rigidbody;
         private PlaneShooter _shooter;
         private Vector3 _startPosition;
-        private Quaternion _minRotation;
-        private Quaternion _maxRotation;
 
         private void Awake()
         {
@@ -28,8 +26,6 @@ namespace Assets.Scripts.FlappyTerminator
         private void Start()
         {
             _startPosition = transform.position;
-            _maxRotation = Quaternion.Euler(0, 0, _maxRotationZ);
-            _minRotation = Quaternion.Euler(0, 0, _minRotationZ);
         }
 
         private void Update()

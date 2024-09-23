@@ -8,7 +8,7 @@ public abstract class Pool<T> : MonoBehaviour where T : MonoBehaviour
 
     private Queue<T> _pool = new Queue<T>();
 
-    public T Get(Vector3 transform)
+    public T Get(Vector2 position)
     {
         if (_pool.Count == 0)
         {
@@ -17,7 +17,7 @@ public abstract class Pool<T> : MonoBehaviour where T : MonoBehaviour
 
         T entity = _pool.Dequeue();
         entity.gameObject.SetActive(true);
-        entity.transform.position = transform;
+        entity.transform.position = position;
 
         return entity;
     }

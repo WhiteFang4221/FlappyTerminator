@@ -4,7 +4,7 @@ namespace Assets.Scripts.FlappyTerminator
 {
     public class Game : MonoBehaviour
     {
-        [SerializeField] Plane _plane;
+        [SerializeField] private Plane _plane;
         [SerializeField] private StartScreen _startScreen;
         [SerializeField] private EndGameScreen _endGameScreen;
         [SerializeField] private EnemySpawner _enemySpawner;
@@ -13,15 +13,15 @@ namespace Assets.Scripts.FlappyTerminator
 
         private void OnEnable()
         {
-            _startScreen.PlayButtonClicked += OnplayButtonClick;
-            _endGameScreen.RestartButtonClicked += OnRestartButtonClick;
+            _startScreen.ButtonClicked += OnplayButtonClick;
+            _endGameScreen.ButtonClicked += OnRestartButtonClick;
             _plane.GameOver += OnGameOver;
         }
 
         private void OnDisable()
         {
-            _startScreen.PlayButtonClicked -= OnplayButtonClick;
-            _endGameScreen.RestartButtonClicked -= OnRestartButtonClick;
+            _startScreen.ButtonClicked -= OnplayButtonClick;
+            _endGameScreen.ButtonClicked -= OnRestartButtonClick;
             _plane.GameOver -= OnGameOver;
         }
 

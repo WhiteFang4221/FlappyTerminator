@@ -10,7 +10,7 @@ public class Parallax : MonoBehaviour
     private Vector2 _offset;
     private float _distanceScaling = 20f;
 
-    private void Start()
+    private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }

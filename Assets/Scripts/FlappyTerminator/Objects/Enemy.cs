@@ -18,11 +18,10 @@ namespace Assets.Scripts.FlappyTerminator
         private WaitForSeconds _delayShooting = new WaitForSeconds(1);
         private Coroutine _shootCoroutine;
         private float _xOffset = -2;
-        
+
         private bool _isRightDirection = false;
         private bool _isShot = false;
 
-        public event Action<Vector2, bool> Shooting;
         public event Action Died;
 
         private void Awake()
@@ -36,7 +35,7 @@ namespace Assets.Scripts.FlappyTerminator
         private void OnEnable()
         {
             _collisionHandler.CollisionDetected += Destroy;
-            
+
             if (_isShot)
             {
                 _spriteRenderer.enabled = true;
@@ -48,7 +47,6 @@ namespace Assets.Scripts.FlappyTerminator
         private void OnDisable()
         {
             _collisionHandler.CollisionDetected -= Destroy;
-           StopShootCoroutine();
         }
 
         private void Update()
@@ -73,17 +71,13 @@ namespace Assets.Scripts.FlappyTerminator
 
         private void StartShootCoroutine()
         {
-            if (_shootCoroutine != null)
-            {
-                _shootCoroutine = null;
-            }
-
+            StopShootCoroutine();
             _shootCoroutine = StartCoroutine(ShootCoroutine());
         }
 
         private void StopShootCoroutine()
         {
-            if ( _shootCoroutine != null)
+            if (_shootCoroutine != null)
             {
                 StopCoroutine(_shootCoroutine);
             }
@@ -105,7 +99,7 @@ namespace Assets.Scripts.FlappyTerminator
         private IEnumerator DestroyCoroutine()
         {
             Died?.Invoke();
-             _explosion.gameObject.SetActive(true);
+            _explosion.gameObject.SetActive(true);
             _spriteRenderer.enabled = false;
             _boxCollider.enabled = false;
             _isShot = true;
