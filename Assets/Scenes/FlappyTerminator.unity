@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &41060530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2492111610051025008, guid: 685fee6f6e3cc59429e1fcc61ca07abe, type: 3}
+  m_PrefabInstance: {fileID: 5387491166415845494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &268841082
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +973,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9002485667456540392, guid: 685fee6f6e3cc59429e1fcc61ca07abe, type: 3}
   m_PrefabInstance: {fileID: 5387491166415845494}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 41060530}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 799607a62e769cd48b9ac3f1f5552612, type: 3}
@@ -979,10 +984,22 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5530362473802424767, guid: 685fee6f6e3cc59429e1fcc61ca07abe, type: 3}
   m_PrefabInstance: {fileID: 5387491166415845494}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 41060530}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d92feead672fa14e8653bcddfd33199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1452210691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41060530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207070e62b4da67479715448ec5ce979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1705778874 stripped
@@ -1380,6 +1397,7 @@ MonoBehaviour:
   _enemySpawner: {fileID: 921148454}
   _bulletSpawner: {fileID: 2123418848}
   _playerBulletSpawner: {fileID: 1295139351}
+  _inputReader: {fileID: 1452210691}
 --- !u!4 &2135013239
 Transform:
   m_ObjectHideFlags: 0
@@ -1588,6 +1606,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3765180306737218672, guid: 685fee6f6e3cc59429e1fcc61ca07abe, type: 3}
+      propertyPath: _inputReader
+      value: 
+      objectReference: {fileID: 1452210691}
+    - target: {fileID: 5772149567705248214, guid: 685fee6f6e3cc59429e1fcc61ca07abe, type: 3}
+      propertyPath: _inputReader
+      value: 
+      objectReference: {fileID: 1452210691}
     - target: {fileID: 5772149567705248214, guid: 685fee6f6e3cc59429e1fcc61ca07abe, type: 3}
       propertyPath: _bulletSpawner
       value: 
@@ -1639,7 +1665,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2492111610051025008, guid: 685fee6f6e3cc59429e1fcc61ca07abe, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1452210691}
   m_SourcePrefab: {fileID: 100100000, guid: 685fee6f6e3cc59429e1fcc61ca07abe, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

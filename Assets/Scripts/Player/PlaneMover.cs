@@ -5,6 +5,7 @@ namespace Assets.Scripts.FlappyTerminator
     [RequireComponent(typeof(Rigidbody2D), typeof(PlaneShooter))]
     public class PlaneMover : MonoBehaviour
     {
+        [SerializeField] private InputReader _inputReader;
         [SerializeField] private float _speed = 2f; 
         [SerializeField] private float _liftForce = 5;
         [SerializeField] private float _fallSpeed = 2;
@@ -16,11 +17,24 @@ namespace Assets.Scripts.FlappyTerminator
         private Rigidbody2D _rigidbody;
         private PlaneShooter _shooter;
         private Vector3 _startPosition;
-
+        private bool _isMoveUp = false;
+ 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _shooter = GetComponent<PlaneShooter>();
+        }
+
+        private void OnEnable()
+        {
+            _inputReader.SpacePressed += OnJumpButtonPressed;
+            _inputReader.SpaceUnpressed += OnJumpButtonUnpressed;
+        }
+
+        private void OnDisable()
+        {
+            _inputReader.SpacePressed -= OnJumpButtonPressed;
+            _inputReader.SpaceUnpressed -= OnJumpButtonUnpressed;
         }
 
         private void Start()
@@ -34,28 +48,41 @@ namespace Assets.Scripts.FlappyTerminator
             {
                 HandleInput();
                 AdjustLiftBasedOnRotation();
-                Shoot();
             }
+        }
+
+        public void Reset()
+        {
+            transform.position = _startPosition;
+            transform.rotation = Quaternion.identity;
+            _rigidbody.velocity = Vector2.zero;
         }
 
         private void HandleInput()
         {
-            if (Input.GetKey(KeyCode.Space))
+            if (_isMoveUp)
             {
-                _rigidbody.rotation = Mathf.Lerp(_rigidbody.rotation, _maxRotationZ, Time.deltaTime * _rotationSpeedUp);
+                Move(_maxRotationZ, _rotationSpeedUp);
             }
             else
             {
-                _rigidbody.rotation = Mathf.Lerp(_rigidbody.rotation, _minRotationZ, Time.deltaTime * _rotationSpeedDown);
+                Move(_minRotationZ, _rotationSpeedDown);
             }
+        } 
+
+        private void Move(float rotation, float rotationSpeed)
+        {
+            _rigidbody.rotation = Mathf.Lerp(_rigidbody.rotation, rotation, Time.deltaTime * rotationSpeed);
         }
 
-        private void Shoot()
+        private void OnJumpButtonPressed()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                _shooter.TryShoot(_speed);
-            }
+            _isMoveUp = true;
+        } 
+        
+        private void OnJumpButtonUnpressed()
+        {
+            _isMoveUp = false;
         }
 
         private void AdjustLiftBasedOnRotation()
@@ -79,13 +106,6 @@ namespace Assets.Scripts.FlappyTerminator
             {
                 _rigidbody.velocity = new Vector2(_speed, -_fallSpeed * Mathf.Abs(tiltFactor));
             }
-        }
-
-        public void Reset()
-        {
-            transform.position = _startPosition;
-            transform.rotation = Quaternion.identity;
-            _rigidbody.velocity = Vector2.zero;
         }
     }
 }

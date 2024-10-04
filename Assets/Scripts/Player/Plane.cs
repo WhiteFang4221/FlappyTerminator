@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.FlappyTerminator
 {
+    [RequireComponent(typeof(PlaneMover), typeof(PlayerCollisionHandler), typeof(ScoreCounter))]
     public class Plane : MonoBehaviour
     {
         private PlaneMover _planeMover;

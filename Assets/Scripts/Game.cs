@@ -1,26 +1,29 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace FlappyBird
+namespace Assets.Scripts.FlappyTerminator
 {
     public class Game : MonoBehaviour
     {
-        [SerializeField] private Bird _bird;
-        [SerializeField] private PipeGenerator _pipeGenerator;
+        [SerializeField] private Plane _plane;
         [SerializeField] private StartScreen _startScreen;
         [SerializeField] private EndGameScreen _endGameScreen;
+        [SerializeField] private EnemySpawner _enemySpawner;
+        [SerializeField] private BulletSpawner _bulletSpawner;
+        [SerializeField] private BulletSpawner _playerBulletSpawner;
+        [SerializeField] private InputReader _inputReader;
 
         private void OnEnable()
         {
             _startScreen.ButtonClicked += OnplayButtonClick;
             _endGameScreen.ButtonClicked += OnRestartButtonClick;
-            _bird.GameOver += OnGameOver;
+            _plane.GameOver += OnGameOver;
         }
 
         private void OnDisable()
         {
             _startScreen.ButtonClicked -= OnplayButtonClick;
             _endGameScreen.ButtonClicked -= OnRestartButtonClick;
-            _bird.GameOver -= OnGameOver;
+            _plane.GameOver -= OnGameOver;
         }
 
         private void Start()
@@ -49,10 +52,12 @@ namespace FlappyBird
 
         private void StartGame()
         {
+            _plane.Reset();
+            _enemySpawner.Reset();
+            _bulletSpawner.Reset();
+            _playerBulletSpawner.Reset();
+            _inputReader.Reset();
             Time.timeScale = 1;
-            _bird.Reset();
-            _pipeGenerator.DeletePipes();
         }
     }
 }
-

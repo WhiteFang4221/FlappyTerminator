@@ -7,6 +7,8 @@ namespace Assets.Scripts.FlappyTerminator
     public class Explosion : MonoBehaviour
     {
         private Animator _animator;
+        private int _animaionNumber = 0;
+        private float _animatioinTime = 1f;
 
         private void Awake()
         {
@@ -25,12 +27,12 @@ namespace Assets.Scripts.FlappyTerminator
 
         private IEnumerator PlayAnimationCoroutine()
         {
-            _animator.Play(0);
-            AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+            _animator.Play(_animaionNumber);
+            AnimatorStateInfo stateInfo = _animator.GetCurrentAnimatorStateInfo(_animaionNumber);
 
-            while (stateInfo.normalizedTime < 1.0f)
+            while (stateInfo.normalizedTime < _animatioinTime)
             {
-                stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+                stateInfo = _animator.GetCurrentAnimatorStateInfo(_animaionNumber);
                 yield return null;
             }
 

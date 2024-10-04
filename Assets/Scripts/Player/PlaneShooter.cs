@@ -5,17 +5,27 @@ namespace Assets.Scripts.FlappyTerminator
 {
     public class PlaneShooter : MonoBehaviour
     {
+        [SerializeField] private InputReader _inputReader;
         [SerializeField] private BulletSpawner _bulletSpawner;
         [SerializeField] private Transform _bulletSpawnPoint;
         [SerializeField] private float _shootDelay = 1;
         private float _delayLeft = 0;
-        private bool _isRightDirection = true;
 
-        public void TryShoot(float shooterSpeed)
+        private void OnEnable()
+        {
+            _inputReader.LeftMousePressed += Shoot;
+        }
+
+        private void OnDisable()
+        {
+            _inputReader.LeftMousePressed -= Shoot;
+        }
+
+        private void Shoot()
         {
             if (_delayLeft <= 0)
             {
-                _bulletSpawner.SpawnBullet(_bulletSpawnPoint.position, _bulletSpawnPoint.rotation, _isRightDirection, shooterSpeed);
+                _bulletSpawner.SpawnBullet(_bulletSpawnPoint.position, _bulletSpawnPoint.rotation.eulerAngles);
                 StartCoroutine(DelayCoroutine());
             }
         }
@@ -27,7 +37,7 @@ namespace Assets.Scripts.FlappyTerminator
             while(_delayLeft > 0)
             {
                 _delayLeft -= Time.deltaTime;
-                yield return Time.deltaTime;
+                yield return null;
             }
         }
     }

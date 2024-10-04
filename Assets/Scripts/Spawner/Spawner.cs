@@ -11,7 +11,7 @@ namespace Assets.Scripts.FlappyTerminator
             _pool.Reset();
         }
 
-        public T GetObject(Vector3 vector)
+        public T GetObject(Vector2 vector)
         {
             T createdObject = _pool.Get(vector);
             createdObject.Disabled += DestroyObject;
